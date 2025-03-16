@@ -9,7 +9,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout git repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: true
 
@@ -20,7 +20,7 @@ jobs:
           cmake --install build --config Release
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: corrosion-win
           path: C:/Program Files (x86)/Corrosion/**/*
@@ -31,7 +31,7 @@ jobs:
     if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - name: Checkout git repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: true
 
@@ -45,7 +45,7 @@ jobs:
           echo "::set-output name=COMMIT::$(git --git-dir corrosion/.git rev-parse HEAD)"
 
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
 
       - name: Prepare artifacts
         run: |
